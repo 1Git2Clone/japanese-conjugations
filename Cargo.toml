@@ -1,0 +1,11 @@
+[package]
+name = "japanese"
+version = "0.1.0"
+edition = "2021"
+
+[workspace]
+members = ["japanese_macros", "shared_types"]
+
+[dependencies]
+japanese_macros = { path = "japanese_macros" }
+shared_types = { path = "shared_types" }
