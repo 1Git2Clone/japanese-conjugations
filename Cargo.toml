@@ -4,7 +4,7 @@ version = "0.1.0"
 edition = "2021"
 
 [workspace]
-members = ["japanese_macros", "shared_types"]
+members = ["japanese_macros", "shared_types", "shared_types/shared_macros"]
 
 [dependencies]
 japanese_macros = { path = "japanese_macros" }

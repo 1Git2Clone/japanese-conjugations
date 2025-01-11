@@ -7,7 +7,7 @@ use crate::language::{
     WordType,
 };
 
-#[derive(Clone, Copy, PartialEq, Eq)]
+#[derive(Clone, Copy, PartialEq, Eq, ParseEnum)]
 pub enum PlainPoliteness {
     /// 〜る
     Plain,
@@ -15,7 +15,7 @@ pub enum PlainPoliteness {
     Polite,
 }
 
-#[derive(Clone, Copy, PartialEq, Eq)]
+#[derive(Clone, Copy, PartialEq, Eq, ParseEnum)]
 pub enum PastPoliteness {
     /// Stem + -n + た
     Plain,
@@ -23,7 +23,7 @@ pub enum PastPoliteness {
     Polite,
 }
 
-#[derive(Clone, Copy, PartialEq, Eq)]
+#[derive(Clone, Copy, PartialEq, Eq, ParseEnum)]
 pub enum NegativePoliteness {
     /// 〜ない
     Plain,
@@ -31,7 +31,7 @@ pub enum NegativePoliteness {
     Polite,
 }
 
-#[derive(Clone, Copy, PartialEq, Eq)]
+#[derive(Clone, Copy, PartialEq, Eq, ParseEnum)]
 pub enum NegativePastPoliteness {
     /// 〜なかった
     Plain,
@@ -39,7 +39,7 @@ pub enum NegativePastPoliteness {
     Polite,
 }
 
-#[derive(Clone, Copy, PartialEq, Eq)]
+#[derive(Clone, Copy, PartialEq, Eq, ParseEnum)]
 pub enum VolitionalPoliteness {
     /// 〜よう
     Plain,
@@ -47,7 +47,7 @@ pub enum VolitionalPoliteness {
     Polite,
 }
 
-#[derive(Clone, Copy, PartialEq, Eq)]
+#[derive(Clone, Copy, PartialEq, Eq, ParseEnum)]
 pub enum ImperativePoliteness {
     /// Stem + -e
     Plain,
@@ -55,7 +55,7 @@ pub enum ImperativePoliteness {
     Polite,
 }
 
-#[derive(Clone, Copy, PartialEq, Eq)]
+#[derive(Clone, Copy, PartialEq, Eq, ParseEnum)]
 pub enum EbaPoliteness {
     /// 〜えば
     Plain,
@@ -63,7 +63,7 @@ pub enum EbaPoliteness {
     Polite,
 }
 
-#[derive(Clone, Copy, PartialEq, Eq)]
+#[derive(Clone, Copy, PartialEq, Eq, ParseEnum)]
 pub enum TaraPoliteness {
     /// 〜たら
     Plain,
@@ -71,13 +71,13 @@ pub enum TaraPoliteness {
     Polite,
 }
 
-#[derive(Clone, Copy, PartialEq, Eq)]
+#[derive(Clone, Copy, PartialEq, Eq, ParseEnum)]
 pub enum ConditionalType {
     Eba(EbaPoliteness),
     Tara(TaraPoliteness),
 }
 
-#[derive(Clone, Copy, PartialEq, Eq)]
+#[derive(Clone, Copy, PartialEq, Eq, ParseEnum)]
 pub enum PotentialPoliteness {
     /// 〜れる
     Plain,
@@ -85,7 +85,7 @@ pub enum PotentialPoliteness {
     Polite,
 }
 
-#[derive(Clone, Copy, PartialEq, Eq)]
+#[derive(Clone, Copy, PartialEq, Eq, ParseEnum)]
 pub enum PassivePoliteness {
     /// 〜られる
     Plain,
@@ -93,7 +93,7 @@ pub enum PassivePoliteness {
     Polite,
 }
 
-#[derive(Clone, Copy, PartialEq, Eq)]
+#[derive(Clone, Copy, PartialEq, Eq, ParseEnum)]
 pub enum CausativePoliteness {
     /// Stem + -a + せる
     Plain,
@@ -101,7 +101,7 @@ pub enum CausativePoliteness {
     Polite,
 }
 
-#[derive(Clone, Copy, PartialEq, Eq)]
+#[derive(Clone, Copy, PartialEq, Eq, ParseEnum)]
 pub enum ConjugationForm {
     /// Language shorthand: `〜`
     Stem,
@@ -326,10 +326,4 @@ pub trait Conjugatable {
     }
 }
 
-impl ::syn::parse::Parse for ConjugationForm {
-    fn parse(input: ::syn::parse::ParseStream) -> ::syn::Result<Self> {
-        let conjugation_form = input.parse::<ConjugationForm>()?;
-
-        Ok(conjugation_form)
-    }
-}
+const INVALID_PATH: &str = "Invalid path";
